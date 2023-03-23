@@ -7,7 +7,7 @@
 	CHARACTER(LEN=2) ANS
 
 ! LETTURA VARIABILI
-	WRITE(*,*) '--- FATTORIALE CALCOLATORE ---'
+	WRITE(*,*) '--- CALCOLATORE FATTORIALE ---'
 	WRITE(*,*) 'Inserisci il fattoriale da calcolare:'
 	READ(*,*) N_MAX
 	WRITE(*,*) 'Vuoi salvare i dati nella cartella dataset? (s/n)'
