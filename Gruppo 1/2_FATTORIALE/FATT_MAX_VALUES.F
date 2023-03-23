@@ -1,33 +1,53 @@
+! MADE BY DAVIDE FERRARA, ANTONIO SEGRETO 
 	PROGRAM FATT_MAX_VALUES
 
 	INTEGER F_I, N_MAX
 	REAL *8 F_64
 	REAL *4 F_32
+	CHARACTER(LEN=2) ANS
 
-	 
+! LETTURA VARIABILI
+	WRITE(*,*) '--- FATTORIALE CALCOLATORE ---'
+	WRITE(*,*) 'Inserisci il fattoriale da calcolare:'
+	READ(*,*) N_MAX
+	WRITE(*,*) 'Vuoi salvare i dati nella cartella dataset? (s/n)'
+	READ(*, *) ANS
+	WRITE(*,'(A, I3, A)') 'F', N_MAX, ' I - R64 - R32 - INT32'
+
 	F_64 = 1
 	F_32 = 1
 	F_I = 1
 
+! CICLO DOVE F_I, F_32, F_64 VIENE MOLTIPLICATO FINO N_NAX, ES: 1 * 2 * ... * NMAX
 	DO I=1, N_MAX
-
-	IF (I .EQ. 1) THEN
-		WRITE(*,*) 1, 1
-	ELSE 
-		F_I = F_I * I
-		!F_32 = F_32 * I
-		!F_64 = F_64 * I
-		WRITE(*,*) I, F_I, F_64
-		
+    
+	F_I = F_I * I
+	F_32 = F_32 * I
+	F_64 = F_64 * I
+	WRITE(*,*) I, F_I, F_32, F_64
+		IF (ANS .EQ. 's' .or. ANS .EQ. 'S') THEN
+! SE RICHIESTO SALVO I DATI IN UN FILE .DAT NELLA CARTELLA DATASET
+		CALL SAVE_DATA(I, F_I, F_32, F_64)
 	END IF
+
 	END DO
 
-	END  
+	END PROGRAM FATT_MAX_VALUES
 
-	SUBROUTINE FATT_INT(F_I)
+! FUNZIONE PER APRIRE IL FILE .DAT E SALVARE I DATI
+	SUBROUTINE SAVE_DATA(I, F_I, F_32, F_64)
+		INTEGER F_I, I
+		REAL *4 F_32
+		REAL *8 F_64
 
-      
+		OPEN(1, FILE='DATASET/F_I.dat')
+		WRITE(1,*) I, F_I
 
-      END SUBROUTINE 
+		OPEN(2, FILE='DATASET/F_32.dat')
+		WRITE(2,*) I, F_32
 
-	
+		OPEN(3, FILE='DATASET/F_64.dat')
+		WRITE(3,*) I, F_64
+
+
+	END SUBROUTINE

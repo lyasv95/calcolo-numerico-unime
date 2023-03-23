@@ -8,6 +8,7 @@
 	EPS = 1.0
 	S = 1.0 + EPS_32_02 
 
+
 	DO WHILE(1.0 + EPS .GT. 1.0)
 		EPS = EPS / 2
 	END DO
