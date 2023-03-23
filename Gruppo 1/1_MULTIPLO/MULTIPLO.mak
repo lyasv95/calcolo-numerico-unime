@@ -32,8 +32,9 @@ NULL=nul
 !ENDIF 
 ################################################################################
 # Begin Project
-RSC=rc.exe
+# PROP Target_Last_Scanned "MULTIPLO - Win32 Debug"
 F90=fl32.exe
+RSC=rc.exe
 
 !IF  "$(CFG)" == "MULTIPLO - Win32 Release"
 
@@ -50,10 +51,11 @@ F90=fl32.exe
 OUTDIR=.\Release
 INTDIR=.\Release
 
-ALL : 
+ALL : "$(OUTDIR)\MULTIPLO.exe"
 
 CLEAN : 
-	-@erase 
+	-@erase ".\Release\MULTIPLO.exe"
+	-@erase ".\Release\MULTIPLO.obj"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -74,7 +76,13 @@ LINK32=link.exe
 # ADD LINK32 kernel32.lib /nologo /subsystem:console /machine:I386
 LINK32_FLAGS=kernel32.lib /nologo /subsystem:console /incremental:no\
  /pdb:"$(OUTDIR)/MULTIPLO.pdb" /machine:I386 /out:"$(OUTDIR)/MULTIPLO.exe" 
-LINK32_OBJS=
+LINK32_OBJS= \
+	"$(INTDIR)/MULTIPLO.obj"
+
+"$(OUTDIR)\MULTIPLO.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+    $(LINK32) @<<
+  $(LINK32_FLAGS) $(LINK32_OBJS)
+<<
 
 !ELSEIF  "$(CFG)" == "MULTIPLO - Win32 Debug"
 
@@ -91,10 +99,13 @@ LINK32_OBJS=
 OUTDIR=.\Debug
 INTDIR=.\Debug
 
-ALL : 
+ALL : "$(OUTDIR)\MULTIPLO.exe"
 
 CLEAN : 
-	-@erase 
+	-@erase ".\Debug\MULTIPLO.exe"
+	-@erase ".\Debug\MULTIPLO.obj"
+	-@erase ".\Debug\MULTIPLO.ilk"
+	-@erase ".\Debug\MULTIPLO.pdb"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -116,7 +127,13 @@ LINK32=link.exe
 LINK32_FLAGS=kernel32.lib /nologo /subsystem:console /incremental:yes\
  /pdb:"$(OUTDIR)/MULTIPLO.pdb" /debug /machine:I386\
  /out:"$(OUTDIR)/MULTIPLO.exe" 
-LINK32_OBJS=
+LINK32_OBJS= \
+	"$(INTDIR)/MULTIPLO.obj"
+
+"$(OUTDIR)\MULTIPLO.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+    $(LINK32) @<<
+  $(LINK32_FLAGS) $(LINK32_OBJS)
+<<
 
 !ENDIF 
 
@@ -141,6 +158,15 @@ LINK32_OBJS=
 
 !ENDIF 
 
+################################################################################
+# Begin Source File
+
+SOURCE=.\MULTIPLO.f
+
+"$(INTDIR)\MULTIPLO.obj" : $(SOURCE) "$(INTDIR)"
+
+
+# End Source File
 # End Target
 # End Project
 ################################################################################
