@@ -1,0 +1,9 @@
+y=f(x) definita nell'intervallo [a,b]
+
+x0 coincidente a
+xn coincidente b (anche forzatamente, se l'ultimo valore esce dall'intervallo)
+
+h=(b-a)/n
+xi i=0,1,...,n
+
+yi=f(xi) 
