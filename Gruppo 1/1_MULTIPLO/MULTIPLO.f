@@ -1,16 +1,35 @@
+!Program by Davide Ferrara and Antonio Segreto
 	PROGRAM MAIN
 
-	INTEGER N
-	N=1
+	INTEGER N,M
+	LOGICAL R
 
-	DO WHILE(N.NE.0)
-	 WRITE(*,*)'INSERISCI UN NUMERO INTERO PER VALUTARE SE E'' PARI O D
-     -ISPARI'
-       WRITE(*,*)'INSERISCI 0 PER USCIRE'
-	 READ(*,*)N
+!Input
+	WRITE(*,*)'---IS MULTIPLE?---'
+	WRITE(*,*)'Insert two integers N and M:'
+	READ(*,*)N,M
 
-	 CALL EVENODD(N)
-	
-      END DO
+!Logic
+	CALL IS_MULTIPLE(N,M,R)
+      
+!Output
+	IF (R) THEN
+	 WRITE(*,*)N,' is multiple of',M
+	ELSE
+	 WRITE(*,*)N,' is not multiple of',M
+	END IF 
 	
       END
+
+!If M/N*N is equal to M then N is multiple of M
+	SUBROUTINE IS_MULTIPLE(N,M,R)
+	 INTEGER N,M
+	 LOGICAL R
+	 
+	 IF(M/N*N .EQ. M)THEN
+	  R=.TRUE.
+	 ELSE 
+	  R=.FALSE.
+	 ENDIF
+      
+	END
