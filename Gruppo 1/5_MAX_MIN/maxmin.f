@@ -1,0 +1,64 @@
+Made By Davide Ferrara and Antonio Segreto
+	PROGRAM READ_FILE
+      
+	INTEGER N
+      PARAMETER (N=100)
+      REAL VECTOR(N), MAX, MIN
+	CHARACTER FILENAME*20
+	FILENAME = 'data.dat'
+      
+	CALL OPENDATASET(FILENAME, N, VECTOR)
+
+	CALL FINDMAX(N, VECTOR, MAX)
+	WRITE(*,*) MAX
+
+	CALL FINDMIN(N, VECTOR, MIN)
+	WRITE(*,*) MIN
+
+	END PROGRAM
+	
+
+Funzione che trova il valore massimo nel vettore
+	SUBROUTINE FINDMAX (N, VECTOR, MAX)
+	INTEGER N
+	REAL VECTOR(N)
+	REAL MAX
+	MAX = VECTOR(1)
+	WRITE(*,*) N, MAX
+
+	DO I=1,N
+	 IF (MAX .LE. VECTOR(I)) THEN
+	  MAX = VECTOR(I)
+	 END IF
+	END DO
+	END SUBROUTINE
+
+
+Funzione che trova il minimo nel vettore
+	SUBROUTINE FINDMIN (N, VECTOR, MIN)
+	INTEGER N
+	REAL VECTOR(N)
+	REAL MIN
+	MIN = VECTOR(1)
+	WRITE(*,*) N, MIN
+
+	DO I=1,N
+	 IF (MIN .GE. VECTOR(I)) THEN
+	  MIN = VECTOR(I)
+	 END IF
+	END DO
+	END SUBROUTINE
+
+
+Funzione che apre il file data.dat e inizializza il vettore
+	SUBROUTINE OPENDATASET(FILENAME, N, VECTOR)
+	CHARACTER FILENAME*20
+	INTEGER N
+	REAL VECTOR(N)
+
+      OPEN(1,FILE=FILENAME,STATUS='OLD')
+      DO I=1,N
+         READ(1,*) VECTOR(I)
+      END DO
+      CLOSE(1)
+	END SUBROUTINE

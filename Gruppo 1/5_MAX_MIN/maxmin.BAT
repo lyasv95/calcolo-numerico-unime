@@ -1,0 +1,3 @@
+maxmin.exe -k
+pause
+
