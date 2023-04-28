@@ -1,0 +1,16 @@
+function [x] = NOR1V(vect, p)
+% Funzione per il calcolo della norma
+
+n = length(vect);
+x = 0;
+
+
+switch 
+
+
+for i=1 : n
+    x = abs(x + vect(i));
+end
+
+end
+

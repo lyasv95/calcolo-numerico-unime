@@ -1,4 +1,4 @@
-function [A_1] = gauss_elim(A)
+function [A_1] = GEM(A)
 % Metodo di Gauss per matrici quadrate.
 %
 % Algoritmo di eliminazione di Gauss per ottenere una matrice triangolare superiore
@@ -11,16 +11,17 @@ function [A_1] = gauss_elim(A)
 n=length(A);
 
 for i=1 : n-1
-    if A(i,i) == 0
+    % controllo se la matrice non è quad. o ci sono zeri nella diagonale principale
+    if A(i,i) == 0 || mod(n,2) == 1
         disp("La Matrice non è fattorizzabile!")
-        break
+        return
     end
 % n-1 poichè l'ultimo elemento della diagonale non deve essere zero
     for k=1:n-1
         for j=k+1:n
             m = A(j,k)/A(k,k);
+            % Riga j - m * Riga k
             A(j,k:n) = A(j,k:n) - m*A(k,k:n);
-            disp(A)
         end
     end
 end

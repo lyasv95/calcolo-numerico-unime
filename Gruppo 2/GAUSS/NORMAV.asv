@@ -1,0 +1,23 @@
+function [x] = NORMAV(vect, p)
+% Funzione per il calcolo della norma
+
+n = length(vect);
+x = 0;
+
+
+switch p
+    case 1
+        for i=1 : n
+            x = abs(x + vect(i));
+        end
+    case 2
+        x = sqrt(vect * vect');
+    otherwise
+        max = 0;
+        for i=1:n
+            if vect(i) > max
+                
+
+
+end
+
