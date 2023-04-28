@@ -43,7 +43,7 @@ else
                     x = temp;
                 end
             end
-
+            % x = raggio spettrale 
             x = sqrt(x * A' * A);
 
         otherwise
