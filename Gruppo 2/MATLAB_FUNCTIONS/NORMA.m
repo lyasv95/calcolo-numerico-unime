@@ -7,15 +7,18 @@ x = 0;
 if isvector(a)
     switch p
         case 1
-            for i=1 : n
-                x = abs(x + a(i));
+            for i=1:n
+                x=abs(x + a(i));
             end
         case 2
-            x = sqrt(a * a');
+            for i=1:n
+                x=x+abs(a(i)^2);
+            end
+            x=sqrt(x);
         otherwise
             for i=1:n
                 if abs(a(i)) > x
-                    x = abs(a(i));
+                    x=abs(a(i));
                 end
             end
     end
@@ -34,18 +37,13 @@ else
                 end
             end
         case 2
+            % Norma di Frobenius
             for i=1:n
-                temp=0;
                 for j=1:n
-                    temp=temp+abs(a(i,j));
+                    x=x+abs(a(i,j)^2);
                 end
-                if temp > x
-                    x = temp;
-                end
+            x=sqrt(x);
             end
-            % x = raggio spettrale 
-            x = sqrt(x * A' * A);
-
         otherwise
         % Il raggio spettrale (o norma infinito) di una matrice A 
         % è definito come il massimo valore assoluto tra le somme 
