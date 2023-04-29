@@ -16,10 +16,6 @@ function [H] = HANK(c,n,m)
 H=zeros(n,m);
 
 for i=1:n
-    for j=1:m
-        H(i,j)=c(i);
-    end
-end
 
 end
 
