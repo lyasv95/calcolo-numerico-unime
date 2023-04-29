@@ -18,8 +18,8 @@ for i=1:n
     W(i,i+1)=-1;
 end
 
-% Taglio l'ultima colonna e riga della matrice
-W=W(1:4,1:4);
+% Taglio l'ultima colonna della matrice
+W=W(1:n,1:n);
 
 end
 
