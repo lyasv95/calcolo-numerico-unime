@@ -1,14 +1,14 @@
 function [x] = NORMA(a, p)
 % Funzione per il calcolo della norma
 
-n = length(a);
-x = 0;
+n=length(a);
+x=0;
 
 if isvector(a)
     switch p
         case 1
             for i=1:n
-                x=abs(x + a(i));
+                x=abs(x+a(i));
             end
         case 2
             for i=1:n
@@ -33,17 +33,17 @@ else
                     temp=temp+abs(a(i,j));
                 end
                 if temp > x
-                    x = temp;
+                    x=temp;
                 end
             end
         case 2
             % Norma di Frobenius
             for i=1:n
                 for j=1:n
-                    x=x+abs(a(i,j)^2);
+                    x=x+a(i,j)^2;
                 end
-            x=sqrt(x);
             end
+            x=sqrt(x);
         otherwise
         % Il raggio spettrale (o norma infinito) di una matrice A 
         % è definito come il massimo valore assoluto tra le somme 
@@ -54,7 +54,7 @@ else
                     temp=temp+abs(a(i,j));
                 end
                 if temp > x
-                    x = temp;
+                    x=temp;
                 end
             end
     end

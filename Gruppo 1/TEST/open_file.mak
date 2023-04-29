@@ -32,8 +32,9 @@ NULL=nul
 !ENDIF 
 ################################################################################
 # Begin Project
-RSC=rc.exe
+# PROP Target_Last_Scanned "open_file - Win32 Debug"
 F90=fl32.exe
+RSC=rc.exe
 
 !IF  "$(CFG)" == "open_file - Win32 Release"
 
@@ -49,6 +50,7 @@ ALL : "$(OUTDIR)\open_file.exe"
 CLEAN : 
 	-@erase ".\open_file.exe"
 	-@erase ".\open_file.obj"
+	-@erase ".\FATT_MAX_VALUES.OBJ"
 
 # ADD BASE F90 /Ox /c /nologo
 # ADD F90 /Ox /c /nologo
@@ -66,7 +68,8 @@ LINK32=link.exe
 LINK32_FLAGS=kernel32.lib /nologo /subsystem:console /incremental:no\
  /pdb:"$(OUTDIR)/open_file.pdb" /machine:I386 /out:"$(OUTDIR)/open_file.exe" 
 LINK32_OBJS= \
-	"$(INTDIR)/open_file.obj"
+	"$(INTDIR)/open_file.obj" \
+	"$(INTDIR)/FATT_MAX_VALUES.OBJ"
 
 "$(OUTDIR)\open_file.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -87,6 +90,7 @@ ALL : "$(OUTDIR)\open_file.exe"
 CLEAN : 
 	-@erase ".\open_file.exe"
 	-@erase ".\open_file.obj"
+	-@erase ".\FATT_MAX_VALUES.OBJ"
 	-@erase ".\open_file.ilk"
 	-@erase ".\open_file.pdb"
 
@@ -107,7 +111,8 @@ LINK32_FLAGS=kernel32.lib /nologo /subsystem:console /incremental:yes\
  /pdb:"$(OUTDIR)/open_file.pdb" /debug /machine:I386\
  /out:"$(OUTDIR)/open_file.exe" 
 LINK32_OBJS= \
-	"$(INTDIR)/open_file.obj"
+	"$(INTDIR)/open_file.obj" \
+	"$(INTDIR)/FATT_MAX_VALUES.OBJ"
 
 "$(OUTDIR)\open_file.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -143,6 +148,17 @@ LINK32_OBJS= \
 SOURCE=.\open_file.f
 
 "$(INTDIR)\open_file.obj" : $(SOURCE) "$(INTDIR)"
+
+
+# End Source File
+################################################################################
+# Begin Source File
+
+SOURCE=\
+"\Users\dadro\Documents\GitHub\Esercizi_Calcolo_Numerico\Gruppo 1\2_FATTORIALE\FATT_MAX_VALUES.F"
+
+"$(INTDIR)\FATT_MAX_VALUES.OBJ" : $(SOURCE) "$(INTDIR)"
+   $(F90) $(F90_PROJ) $(SOURCE)
 
 
 # End Source File
