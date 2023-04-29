@@ -11,14 +11,20 @@ function [det] = DET(A)
 % l'unico applicabile quando le dimensioni delle matrici diventano grandi.
 
 % Triangolarizzo la matrice A usand l'eliminazione di Gauss
-A_1 = GEM(A);
-n = length(A_1);
 
-det = A_1(1,1);
+[n,m] = size(A);
 
-% Prodotto della diagonale principale
-for i = 2 : n
-    det = det * A_1(i,i);
+if mod(n+m,2)==1
+    disp("La matrice inserita non è quadrata!")
+    return
+else
+    A_1 = GEM(A);
+    
+    det = A_1(1,1);
+    
+    % Prodotto della diagonale principale
+    for i = 2 : n
+        det = det * A_1(i,i);
+    end
 end
-
 end

@@ -1,4 +1,5 @@
 function [invA] = INVGJ(A)
+%% NON FUNZIONA!!!
 % Matrice inversa tramite algoritmo di Gauss-Jordan
 % Detailed explanation goes here
 
