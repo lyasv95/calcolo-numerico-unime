@@ -10,14 +10,19 @@ function [A_1] = GEM(A)
 
 [n,m]=size(A);
 
+% controllo se la matrice non è quad. o ci sono zeri nella diagonale principale
+if n ~= m
+    disp("La matrice non è quadrata, non può essere fattorizzata!")
+    return
+end
+
 for i=1 : n-1
-    % controllo se la matrice non è quad. o ci sono zeri nella diagonale principale
-    if A(i,i) == 0 || mod(n+m,2) == 1
-        disp("La Matrice non è fattorizzabile!")
-        return
-    end
 % n-1 poichè l'ultimo elemento della diagonale non deve essere zero
     for k=1:n-1
+        if A(k,k) == 0
+            disp("La Matrice non è fattorizzabile")
+            return
+        end
         for j=k+1:n
             m = A(j,k)/A(k,k);
             % Riga j - m * Riga k
