@@ -1,2 +1,2 @@
-# calcolo-numerico-unime
-Prove di laboratorio di Calcolo Numero 2023 
+# Cacolo Numerico Unime
+Prove di laboratorio e teoria di Calcolo Numero (2023)  
